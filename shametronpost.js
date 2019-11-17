@@ -16,6 +16,7 @@ bot.on('start', function(data) {
     };
     console.log(data)
     // define private group instead of 'private_group', where bot exist
-    bot.postMessageToChannel('everyone', `${message}`, params); 
+    bot.postMessageToGroup('shamebot', `${message}`, params); 
+    // bot.postMessageToChannel('everyone', `${message}`, params);
 });
 }
