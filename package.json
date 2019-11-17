@@ -1,0 +1,11 @@
+{
+  "name": "github-userdata",
+  "version": "1.0.0",
+  "description": "Simple api server to aggregate github data about users",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "leeroywking@gmail.com",
+  "license": "MIT"
+}
