@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "leeroywking@gmail.com",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "slackbots": "^1.2.0",
     "superagent": "^5.1.0"
   }
 }
