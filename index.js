@@ -1,6 +1,8 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
 const PORT = process.env.PORT || 3000;
 const app = express();
 const userCheck = require('./userGet.js');
@@ -10,8 +12,14 @@ const mongoose = require('mongoose');
 
 
 
+// App Level MW
+app.use(cors());
+app.use(morgan('dev'));
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
 async function reply(req, res) {
-  console.log({req})
   if(req.body.challenge){
     res.send({"challenge":req.body.challenge})
   }
@@ -32,7 +40,7 @@ async function reply(req, res) {
   shametron(`Here are our naughty coders of the day ${naughtylist}`);
 }
 
-function addUser(req,res,next){
+function signup(req,res,next){
   console.log(req);
   let user = req.body//assign user here
   user.save()
@@ -45,6 +53,6 @@ function addUser(req,res,next){
 };
 
 app.get('/', reply);
-app.post('/addUser',addUser);
+app.post('/signup',signup);
 
 app.listen(PORT);
