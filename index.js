@@ -9,6 +9,10 @@ const shametron = require('./shametronpost.js');
 
 
 async function reply(req, res) {
+  console.log({req})
+  if(req.body.challenge){
+    res.send({"challenge":req.body.challenge})
+  }
   const promiseArr = [];
   let results = {}
   users.forEach(user => promiseArr.push(userCheck(user)))
@@ -28,5 +32,6 @@ async function reply(req, res) {
 
 
 app.get('/', reply);
+
 
 app.listen(PORT);
