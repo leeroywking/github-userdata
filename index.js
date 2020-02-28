@@ -38,8 +38,12 @@ async function reply(req, res) {
   shametron(`Here are our naughty coders of the day ${naughtylist}`);
 }
 
+function signup(req,res){
+  console.log(res.body)
+  
+}
 
 app.post('/', reply);
 
-
+app.post('/signup', signup)
 app.listen(PORT);
