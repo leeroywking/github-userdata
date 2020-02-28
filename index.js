@@ -8,6 +8,8 @@ const app = express();
 const userCheck = require('./userGet.js');
 const users = require('./userslist.js');
 const shametron = require('./shametronpost.js');
+const mongoose = require('mongoose');
+
 
 
 // App Level MW
@@ -38,12 +40,19 @@ async function reply(req, res) {
   shametron(`Here are our naughty coders of the day ${naughtylist}`);
 }
 
-function signup(req,res){
-  console.log(req.body)
-  res.status(200).send('you done good')
-}
+function signup(req,res,next){
+  console.log(req);
+  let user = req.body//assign user here
+  user.save()
+  .then(item => {
+    res.send('it saved (probably)');
+  })
+  .catch(err => {
+    res.status(400).send('it didn\'t save :(');
+  });
+};
 
-app.post('/', reply);
+app.get('/', reply);
+app.post('/signup',signup);
 
-app.post('/signup', signup)
 app.listen(PORT);
