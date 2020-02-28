@@ -56,15 +56,18 @@ async function reply(req, res) {
 }
 
 async function getTheSlackers(){
+  
+  return new Promise((res,rej) => {
   User.find({})
   .then(data => {
     let messOfUsers = data.map(user => user.userName)
     let setOfUsers = new Set()
     messOfUsers.forEach(username => setOfUsers.add(username))
     let dedupUsers = Array.from(setOfUsers)
-    return dedupUsers
+    res(dedupUsers)
   })
-
+  .catch(e => rej(e))
+  })
 };
 
 function signup(req,res){
