@@ -36,6 +36,9 @@ async function reply(req, res) {
   if(req.body.challenge){
     res.send({"challenge":req.body.challenge})
   }
+
+  let allUsers = User.find({})
+  console.log(allUsers)
   const promiseArr = [];
   let results = {}
   users.forEach(user => promiseArr.push(userCheck(user)))
