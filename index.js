@@ -57,7 +57,7 @@ async function reply(req, res) {
 }
 
 function getTheSlackers(req,res,next){
-  User.find({}).catch(noop)
+  User.find({})
   .then(data => (console.log(data)))
 };
 
