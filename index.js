@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 
 
 
-// const database = process.env.MONGODB_URI || require('./.env.js').MONGODB_URI
+const database = process.env.MONGODB_URI || require('./.env.js').MONGODB_URI
 
 mongoose.connect(database);
 
