@@ -58,7 +58,10 @@ async function reply(req, res) {
 
 function getTheSlackers(req,res,next){
   User.find({})
-  .then(data => (console.log(data)))
+  .then(data => {
+    console.log(data.map(user => user.userName))
+  })
+
 };
 
 function signup(req,res){
