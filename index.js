@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 async function reply(req, res) {
-  console.log({req})
   if(req.body.challenge){
     res.send({"challenge":req.body.challenge})
   }
