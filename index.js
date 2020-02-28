@@ -30,6 +30,11 @@ async function reply(req, res) {
   shametron(`Here are our naughty coders of the day ${naughtylist}`);
 }
 
+function getTheSlackers(req,res,next){
+  User.find({}).catch(noop)
+  .then(data => (console.log(data))
+  )
+};
 
 app.get('/', reply);
 
