@@ -54,9 +54,9 @@ async function reply(req, res) {
 }
 
 function getTheSlackers(req,res,next){
-  let list = await User.find({}).catch(noop);
-  console.log(list)
-}
+  User.find({}).catch(noop)
+  .then(data => (console.log(data))
+};
 
 function signup(req,res){
   let newUser = new User({userName:req.body.text}) //assign user here
