@@ -59,7 +59,7 @@ function getTheSlackers(req,res,next){
 
 function signup(req,res,next){
   console.log(req);
-  let newUser = new User(req.body.text) //assign user here
+  let newUser = new User({userName:req.body.text}) //assign user here
   newUser.save()
   .then(item => {
     res.send('it saved (probably)');
