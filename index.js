@@ -6,6 +6,8 @@ const app = express();
 const userCheck = require('./userGet.js');
 const users = require('./userslist.js');
 const shametron = require('./shametronpost.js');
+const mongoose = require('mongoose');
+
 
 
 async function reply(req, res) {
@@ -30,8 +32,19 @@ async function reply(req, res) {
   shametron(`Here are our naughty coders of the day ${naughtylist}`);
 }
 
+function addUser(req,res,next){
+  console.log(req);
+  let user = req.body//assign user here
+  user.save()
+  .then(item => {
+    res.send('it saved (probably)');
+  })
+  .catch(err => {
+    res.status(400).send('it didn\'t save :(');
+  });
+};
 
 app.get('/', reply);
-
+app.post('/addUser',addUser);
 
 app.listen(PORT);
