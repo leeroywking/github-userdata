@@ -39,8 +39,8 @@ async function reply(req, res) {
 }
 
 function signup(req,res){
-  console.log(res.body)
-  
+  console.log(req.body)
+  res.status(200).send('you done good')
 }
 
 app.post('/', reply);
