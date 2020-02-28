@@ -54,7 +54,7 @@ async function reply(req, res) {
 }
 
 function getTheSlackers(req,res,next){
-  let list = await User.findOne({ userName: req.body.text }).catch(noop);
+  let list = await User.find({}).catch(noop);
   console.log(list)
 }
 
