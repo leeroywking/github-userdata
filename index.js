@@ -54,8 +54,8 @@ async function reply(req, res) {
 }
 
 function getTheSlackers(req,res,next){
-  let user = req.body.text;
-
+  let list = await User.findOne({ userName: req.body.text }).catch(noop);
+  console.log(list)
 }
 
 function signup(req,res){
@@ -70,6 +70,7 @@ function signup(req,res){
 };
 
 app.post('/', reply);
+app.get('/getit',getTheSlackers)
 app.post('/signup',signup);
 
 app.listen(PORT);
