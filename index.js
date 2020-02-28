@@ -35,7 +35,7 @@ async function reply(req, res) {
 }
 
 
-app.get('/', reply);
+app.post('/', reply);
 
 
 app.listen(PORT);
