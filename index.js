@@ -8,8 +8,8 @@ const app = express();
 const userCheck = require('./userGet.js');
 const users = require('./userslist.js');
 const shametron = require('./shametronpost.js');
+const shameBotPost = require('./shameBotPost.js')
 const mongoose = require('mongoose');
-
 
 
 // App Level MW
@@ -37,7 +37,7 @@ async function reply(req, res) {
       }
     }
   }
-  shametron(`Here are our naughty coders of the day ${naughtylist}`);
+  shameBotPost(`Here are our naughty coders of the day ${naughtylist}`)
 }
 
 function signup(req,res,next){
