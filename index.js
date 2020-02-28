@@ -42,7 +42,7 @@ async function reply(req, res) {
 
 function signup(req,res,next){
   console.log(req);
-  let user = req.body//assign user here
+  let user = req.body.text //assign user here
   user.save()
   .then(item => {
     res.send('it saved (probably)');
