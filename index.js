@@ -52,7 +52,7 @@ function signup(req,res,next){
   });
 };
 
-app.get('/', reply);
+app.post('/', reply);
 app.post('/signup',signup);
 
 app.listen(PORT);
