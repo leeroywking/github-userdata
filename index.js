@@ -18,6 +18,13 @@ const mongoose = require('mongoose');
 // mongoose.connect(database);
 
 
+var userSchema = new mongoose.Schema({
+  userName: String,
+});
+var User = mongoose.model("User", userSchema);
+
+
+
 // App Level MW
 app.use(cors());
 app.use(morgan('dev'));
@@ -45,12 +52,15 @@ async function reply(req, res) {
   }
   shameBotPost(`Here are our naughty coders of the day ${naughtylist}`)
 }
+function getTheSlackers(req,res,next){
+  let user = req.body.text;
+
+}
 
 function signup(req,res,next){
   console.log(req);
-  
-  let user = req.body.text //assign user here
-  user.save()
+  let newUser = new User(req.body.text) //assign user here
+  newUser.save()
   .then(item => {
     res.send('it saved (probably)');
   })
