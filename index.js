@@ -8,7 +8,6 @@ const userCheck = require('./userGet.js');
 const users = require('./userslist.js');
 const shametron = require('./shametronpost.js');
 
-const app = express();
 
 // App Level MW
 app.use(cors());
