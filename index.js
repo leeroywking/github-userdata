@@ -12,6 +12,11 @@ const mongoose = require('mongoose');
 
 
 
+const database = process.env.MONGODB_URI
+
+mongoose.connect(database);
+
+
 // App Level MW
 app.use(cors());
 app.use(morgan('dev'));
