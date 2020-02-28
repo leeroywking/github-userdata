@@ -6,8 +6,8 @@ const morgan = require('morgan');
 const PORT = process.env.PORT || 3000;
 const app = express();
 const userCheck = require('./userGet.js');
-const users = require('./userslist.js');
-const shametron = require('./shametronpost.js');
+// const users = require('./userslist.js');
+// const shametron = require('./shametronpost.js');
 const shameBotPost = require('./shameBotPost.js')
 const mongoose = require('mongoose');
 
@@ -37,10 +37,9 @@ async function reply(req, res) {
     res.send({"challenge":req.body.challenge})
   }
 
-  let allUsers = User.find({})
-  console.log(allUsers)
   const promiseArr = [];
   let results = {}
+  let users = await getTheSlackers()
   users.forEach(user => promiseArr.push(userCheck(user)))
   let responses = await Promise.all(promiseArr)
   responses.forEach(result => results = {...results, result})
@@ -56,10 +55,14 @@ async function reply(req, res) {
   shameBotPost(`Here are our naughty coders of the day ${naughtylist}`)
 }
 
-function getTheSlackers(req,res,next){
+async function getTheSlackers(){
   User.find({})
   .then(data => {
-    console.log(data.map(user => user.userName))
+    let messOfUsers = data.map(user => user.userName)
+    let setOfUsers = new Set()
+    messOfUsers.forEach(username => setOfUsers.add(username))
+    let dedupUsers = Array.from(setOfUsers)
+    return dedupUsers
   })
 
 };
