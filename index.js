@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 
 
 
-const database = process.env.MONGODB_URI || require('./.env.js').MONGODB_URI
+// const database = process.env.MONGODB_URI || require('./.env.js').MONGODB_URI
 
 // mongoose.connect(database);
 
@@ -48,6 +48,7 @@ async function reply(req, res) {
 
 function signup(req,res,next){
   console.log(req);
+  
   let user = req.body.text //assign user here
   user.save()
   .then(item => {
