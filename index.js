@@ -8,9 +8,14 @@ const userCheck = require('./userGet.js');
 const users = require('./userslist.js');
 const shametron = require('./shametronpost.js');
 
+const app = express();
 
-express.use(express.json());
-express.use(express.urlencoded({extended:true}));
+// App Level MW
+app.use(cors());
+app.use(morgan('dev'));
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 async function reply(req, res) {
   console.log({req})
