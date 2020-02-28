@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 
 const database = process.env.MONGODB_URI || require('./.env.js').MONGODB_URI
 
-// mongoose.connect(database);
+mongoose.connect(database);
 
 
 var userSchema = new mongoose.Schema({
@@ -52,12 +52,13 @@ async function reply(req, res) {
   }
   shameBotPost(`Here are our naughty coders of the day ${naughtylist}`)
 }
+
 function getTheSlackers(req,res,next){
   let user = req.body.text;
 
 }
 
-function signup(req,res,next){
+function signup(req,res){
   let newUser = new User({userName:req.body.text}) //assign user here
   newUser.save()
   .then(item => {
