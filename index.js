@@ -1,12 +1,16 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 3000;
 const app = express();
 const userCheck = require('./userGet.js');
 const users = require('./userslist.js');
 const shametron = require('./shametronpost.js');
 
+
+express.use(express.json());
+express.use(express.urlencoded({extended:true}));
 
 async function reply(req, res) {
   console.log({req})
