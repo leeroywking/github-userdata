@@ -12,7 +12,7 @@ async function  userCheck(queryUser){
     .set('User-Agent', `${user}`)
     .set('Authorization', `token ${token}`)
     .catch(err => console.error(err))
-    const dates = response.body.map(item => item.created_at.substr(0,10))
+    const dates = response.body.map(item => new Date(item.created_at).toISOString().substr(0,10))
     const today = new Date().toISOString().substr(0,10)
     return {[queryUser]:dates.includes(today)}
 }
