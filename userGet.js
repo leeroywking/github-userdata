@@ -5,6 +5,11 @@ const user = 'leeroywking'
 // https://api.github.com/users/
 const user2 = 'leeroywking';
 
+Date.prototype.addHours = function(h) {
+  this.setTime(this.getTime() + (h*60*60*1000));
+  return this;
+}
+
 async function  userCheck(queryUser){
     const URL = `https://api.github.com/users/${queryUser}/events`;
     console.log(URL)
@@ -12,8 +17,8 @@ async function  userCheck(queryUser){
     .set('User-Agent', `${user}`)
     .set('Authorization', `token ${token}`)
     .catch(err => console.error(err))
-    const dates = response.body.map(item => new Date(item.created_at).toISOString().substr(0,10))
-    const today = new Date().toISOString().substr(0,10)
+    const dates = response.body.map(item => new Date(item.created_at).addHours(-8.5).toISOString().substr(0,10))
+    const today = new Date().addHours(-8.5).toISOString().substr(0,10)
     return {[queryUser]:dates.includes(today)}
 }
 
